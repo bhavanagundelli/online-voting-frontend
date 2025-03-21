@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
-// ✅ Use environment variable instead of hardcoding
-const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;
+import API_URL from "./config"; // Import the API URL from config.js
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,7 +8,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/login`, { email, password });
+      const response = await axios.post(`${API_URL}/api/login`, { email, password });
       localStorage.setItem("token", response.data.token);
       alert("Login successful!");
     } catch (error) {
@@ -37,4 +35,3 @@ function Login() {
 }
 
 export default Login;
-
